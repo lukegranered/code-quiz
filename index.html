@@ -11,60 +11,33 @@
     <header>
        
     </header>
-    <main class="intro-card">
+    <main class="intro-card" id="intro-card">
        <h1>Welcome to Luke's Code Quiz!</h1>
        <p>In this quiz you will be asked 4 multiple choice questions. Each question is worth 25 points. You will have one minute to complete the quiz. 15 seconds will be deducted for each incorrect answer. Good luck!</p>
-       <button>Start</button>
+       <button id="strt-btn">Start</button>
     </main>
-    <section class="que-card">
-        <h1>What is a function?</h1>
+    <section class="que-card" id="question-one" style="display: none;">
+        <h1 id="question"></h1>
         <article class="answer-buttons">
-            <button class="incorrect">A way to adapt code to different size monitors.</button>
-            <button class="incorrect">A command that selects specific elements on the page.</button>
-            <button class="correct">A set of statements that performs a task or calculates value.</button>
-            <button class="incorrect">An event for friends, family, and coworkers.</button>
+            <button></button>
+            <button></button>
+            <button></button>
+            <button></button>
         </article>
     </section>
-    <section class="que-card">
-        <h1>What does a variable do?</h1>
-        <article class="answer-buttons">
-            <button class="correct">Stores a data value that can be changed later on.</button>
-            <button class="incorrect">Sets a specific background color.</button>
-            <button class="incorrect">Gives an element a specific identity.</button>
-            <button class="incorrect">Opens spotify.</button>
-        </article>
-    </section>
-    <section class="que-card">
-        <h1>What does a media query do?</h1>
-        <article class="answer-buttons">
-            <button class="incorrect">Asks important questions on the news.</button>
-            <button class="incorrect">Stores data locally.</button>
-            <button class="correct">Adjusts code based on the device the user is viewing to view an application.</button>
-            <button class="incorrect">Allows users to input data.</button>
-        </article>
-    </section>
-    <section class="que-card">
-        <h1>What is localStorage?</h1>
-        <article class="answer-buttons">
-            <button class="incorrect">An element within another element.</button>
-            <button class="incorrect">A martial arts practice.</button>
-            <button class="correct">A property that allows JavaScript sites and apps to save data in a web browser.</button>
-            <button class="incorrect">A company that rents storage units.</button>
-        </article>
-    </section>
-    <aside class="times-up">
+    <aside class="times-up" id="times-up" style="display: none;">
         <h1>TIME'S UP!</h1>
         <button>Home</button>
         <button>View High Scores</button>
     </aside>
-    <aside class="congratulations">
+    <aside class="congratulations" id="congratulations" style="display: none;">
         <h1>CONGRATULATIONS</h1>
         <p>You did it! Enter your initials to save your score.</p>
         <input type="text">
         <button>Enter</button>
         <button>Quit</button>
     </aside>
-    <footer class="high-scores">
+    <footer class="high-scores" id="high-scores" style="display: none;">
         <h1>High Scores</h1>
         <ol>
             <li></li>

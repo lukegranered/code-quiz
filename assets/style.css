@@ -1,5 +1,5 @@
 * {
-    margin: 0;
+    margin: auto;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
@@ -9,31 +9,43 @@ body {
     background-color: rgb(228, 82, 82);
 }
 
-.intro-card, .que-card, .times-up, .congratulations, .high-scores {
-    margin: 10px auto;
+.que-card, .times-up, .congratulations, .high-scores {
+    margin: auto;
     width: 50%;
     padding: 10px;
     background-color: rgb(238, 209, 170);
     border-radius: 5px;
+    text-align: center;
+    /* display: none; */
+}
+
+.intro-card {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    background-color: rgb(238, 209, 170);
+    border-radius: 5px;
+    text-align: center;
 }
 
 .intro-card h1, .que-card h1, .times-up h1, .congratulations h1, .high-scores h1 {
     text-align: center;
+    padding: 10px;
     background-color: rgb(238, 209, 170);
   
 
 }
 
 .intro-card p {
+    padding: 10px;
     text-align: center;
 }
 
 .intro-card button {
     font-size: 25px;
     font-weight: 500;
-    /* text-align: center; */
+    display: flex;
     padding: 15px 30px;
-    outline: none;
     border: none;
     border-radius: 5px;
     background-color: white;
@@ -67,15 +79,12 @@ body {
 .times-up button {
     font-size: 20px;
     font-weight: 500;
-    margin: 10px;
     padding: 15px 30px;
-    text-align: center;
-    outline: none;
     border: none;
     border-radius: 5px;
     background-color: white;
     cursor: pointer;
-    display: inline-block;
+    
 }
 
 .times-up button:hover {
