@@ -1,3 +1,96 @@
+var homeCard = document.querySelector("#home");
+var queCard = document.querySelector("#que-card");
+var saveGame = document.querySelector("#save-game");
+var highScores = document.querySelector("#highscores");
+var answerButtons = document.querySelectorAll(".js-btn-question");
+let questionNumber = 0;
+
+function init() {
+    var startBtn = document.querySelector("#start-btn");
+    var highScoreBtn = document.querySelector("#highscore-btn");
+    startBtn.addEventListener("click", () => {
+        populateCueCard(0);
+        if (homeCard.style.display === "flex") {
+            homeCard.style.display = "none";
+        } else {
+            homeCard.style.display = "none";
+        }
+        if (queCard.style.display === "none") {
+            queCard.style.display = "flex"
+        } else {
+            queCard.style.display = "none"
+        }
+        
+        answerButtons.forEach((answerButton) => {
+            answerButton.addEventListener("click", (event) => {
+                const isCorrect = event.target.dataset.isCorrect;
+                trueOrFalse(isCorrect);
+                console.log(isCorrect);
+            })
+        });
+
+    });
+    highScoreBtn.addEventListener("click", populateHighScores);
+
+    if (homeCard.style.display === "none") {
+        homeCard.style.display = "flex";
+    } else {
+        homeCard.style.display = "flex";
+    }
+
+    if (highScores.style.display === "flex") {
+        highScores.style.display = "none";
+    } else {
+        highScores.style.display = "none";
+    }
+};
+
+function populateCueCard() {
+   
+    var focusQuestion = document.querySelector("#question");
+    focusQuestion.innerText = questions[questionNumber].question;
+
+    var answerButtons = document.querySelectorAll(".js-btn-question");
+
+    // var answerOption = questions[questionNumber].answers[0];
+    // answerButtons[0].innerText = answerOption.answer;
+    
+
+    for (i = 0; i < questions[questionNumber].answers.length; i++) {
+        const answerOption = questions[questionNumber].answers[i];
+        answerButtons[i].innerText = answerOption.answer;
+        answerButtons[i].setAttribute("data-is-correct", answerOption.isCorrect);
+    }
+
+    questionNumber += 1;
+
+}
+
+function trueOrFalse(answerSelected) {
+    if (answerSelected === "true") {
+        populateCueCard();
+    } else {
+        window.alert("Sorry, wrong answer!")
+    }
+}
+
+
+function populateHighScores() {
+    if (homeCard.style.display === "flex") {
+        homeCard.style.display = "none";
+    } else {
+        homeCard.style.display = "none";
+    }
+    if (highScores.style.display === "none") {
+        highScores.style.display = "flex";
+    } else {
+        highScores.style.display = "none";
+    }
+
+    var homeButton = document.getElementById("#home-btn");
+        homeButton.addEventListener("click", init);
+    
+}
 
 var questions = [
     {
@@ -85,72 +178,5 @@ var questions = [
         ]
     }
 ];
-// TO DO:
-    // add event listener for start buttom
-    // create new function to initialize first que card
-        //populate cue card 
-        // add event listeners for buttons
-        // callback checkAnswer
-        // add data attribute to button 
-        // store write/wrong answer in localStorage
-var currentQuestionNumber = 0
-
-function init() {
-    var introEl = document.querySelector("#intro-card");
-    var startBtn = document.querySelector("#strt-btn");
-    // if (introEl.style.display === "none") {
-    //     introEl.style.display = "block";
-        
-    // } else {
-    //     introEl.style.display = "none";
-    // }
-
-    startBtn.addEventListener("click", () => {
-        populateQueCard(currentQuestionNumber);
-        introEl.style.display = "none";
-    })
-
-}
-
-function populateQueCard(index) {
-    console.log(questions[index].question);
-    var queCard = document.querySelector(".que-card");
-    if (queCard.style.display === "none") {
-        queCard.style.display = "block";
-    } else {
-        queCard.style.display = "none";
-    }
-
-
-    var answerButtons = document.querySelectorAll("#answer-buttons > button");
-        answerButtons.forEach(function(option) {
-            for(var i = 0; i < questions.length; i++);
-        })
-    
-
-
-    // step one - toggle display for que card container
-    // step two - separate text for each
-    // step three - differentiate answer classes
-    // Button setup:
-// 1. Document.querySelectorAll(your button class)
-// Returns array of elements
-
-// While in loop set event listeners
-// Use checkAnswer() and populateQueCard() inside callback arrow function
-// John Michael McCasland to Everyone (2:37 PM)
-// checkAnswer() should check if answer is correct and store it somewhere
-// 1. Document.querySelectorAll(your button class)
-}
-var buttonHandler = function(event) {
-    var targetEl = event.target;
-
-    if (targetEl.matches(isCorrect)) {
-        populateQueCard(index);
-    }
-    currentQuestionNumber += 1;
-}
-
-
 
 init();

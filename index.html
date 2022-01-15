@@ -8,42 +8,36 @@
     <title>Luke's Code Quiz</title>
 </head>
 <body>
-    <header>
-       
-    </header>
-    <main class="intro-card" id="intro-card">
-       <h1>Welcome to Luke's Code Quiz!</h1>
-       <p>In this quiz you will be asked 4 multiple choice questions. Each question is worth 25 points. You will have one minute to complete the quiz. 15 seconds will be deducted for each incorrect answer. Good luck!</p>
-       <button id="strt-btn">Start</button>
-    </main>
-    <section class="que-card" id="question-one" style="display: none;">
-        <h1 id="question"></h1>
-        <article class="answer-buttons">
-            <button></button>
-            <button></button>
-            <button></button>
-            <button></button>
-        </article>
-    </section>
-    <aside class="times-up" id="times-up" style="display: none;">
-        <h1>TIME'S UP!</h1>
-        <button>Home</button>
-        <button>View High Scores</button>
-    </aside>
-    <aside class="congratulations" id="congratulations" style="display: none;">
-        <h1>CONGRATULATIONS</h1>
-        <p>You did it! Enter your initials to save your score.</p>
-        <input type="text">
-        <button>Enter</button>
-        <button>Quit</button>
-    </aside>
-    <footer class="high-scores" id="high-scores" style="display: none;">
+    <div id="home" class="container flex-column flex-center" display="block">
+            <h1>Welcome to Luke's Code Quiz!</h1>
+            <button class="btn" id="start-btn">Start</button>
+            <button class="btn" id="highscore-btn">High Scores</button>
+    </div>
+
+   
+    <div id="que-card" class="container flex-column flex-center" style="display: none;">
+        <h1 id="question">
+            Question
+        </h1>
+        <button id="answwer-btn1" class="btn js-btn-question"></button>
+        <button id="answwer-btn2" class="btn js-btn-question"></button>
+        <button id="answwer-btn3" class="btn js-btn-question"></button>
+        <button id="answwer-btn4" class="btn js-btn-question"></button>
+    </div>
+   
+    <div id="save-game" class="container flex-column flex-center" style="display: none;">
+        <h1>Save your score!</h1>
+        <input type="text" id="player-name" class="list-items">
+        <button class="btn" id="save-btn">Save</button>
+    </div>
+
+    <div id="highscores" class="container flex-column flex-center" style="display: none;">
         <h1>High Scores</h1>
         <ol>
             <li></li>
         </ol>
-        <button>Home</button>
-    </footer>
+        <button id="home-btn" class="btn">Home</button>
+    </div>
 
     <script src="./assets/script.js"></script>
 </body>
