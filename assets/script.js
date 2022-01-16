@@ -10,6 +10,7 @@ function init() {
     var highScoreBtn = document.querySelector("#highscore-btn");
     startBtn.addEventListener("click", () => {
         populateCueCard(0);
+        onTimer();
         if (homeCard.style.display === "flex") {
             homeCard.style.display = "none";
         } else {
@@ -46,15 +47,10 @@ function init() {
 };
 
 function populateCueCard() {
-   
     var focusQuestion = document.querySelector("#question");
     focusQuestion.innerText = questions[questionNumber].question;
 
-    var answerButtons = document.querySelectorAll(".js-btn-question");
-
-    // var answerOption = questions[questionNumber].answers[0];
-    // answerButtons[0].innerText = answerOption.answer;
-    
+    var answerButtons = document.querySelectorAll(".js-btn-question");   
 
     for (i = 0; i < questions[questionNumber].answers.length; i++) {
         const answerOption = questions[questionNumber].answers[i];
@@ -65,6 +61,18 @@ function populateCueCard() {
     questionNumber += 1;
 
 }
+
+
+function onTimer() {
+    i = 60;
+    document.getElementById("my-counter").innerHTML = i;
+    i--;
+    if (i < 0) {
+        alert('You lose!');
+    } else {
+        setTimeout(onTimer, 1000);
+        }
+    };
 
 function trueOrFalse(answerSelected) {
     if (answerSelected === "true") {

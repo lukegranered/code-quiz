@@ -13,11 +13,12 @@ body {
 h1 {
     font-size: 50px;
     color: black;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
 h2 {
     font-size: 25px;
+    text-align: center;
     margin-bottom: 25px;
 }
 
@@ -57,7 +58,7 @@ h2 {
 .btn {
     font-size: 25px;
     padding: 50px 0;
-    width: 200px;
+    width: 450px;
     text-align: center;
     margin-bottom: 15px;
     text-decoration: none;
