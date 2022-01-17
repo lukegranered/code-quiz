@@ -11,6 +11,7 @@ function init() {
     startBtn.addEventListener("click", () => {
         populateCueCard(0);
         onTimer();
+        console.log(onTimer);
         if (homeCard.style.display === "flex") {
             homeCard.style.display = "none";
         } else {
@@ -63,16 +64,16 @@ function populateCueCard() {
 }
 
 
-function onTimer() {
-    i = 60;
-    document.getElementById("my-counter").innerHTML = i;
-    i--;
-    if (i < 0) {
-        alert('You lose!');
-    } else {
-        setTimeout(onTimer, 1000);
-        }
-    };
+// function onTimer() {
+//     i = 60;
+//     document.getElementById("my-counter").innerHTML = i;
+//     i--;
+//     if (i < 0) {
+//         alert('You lose!');
+//     } else {
+//         setTimeout(onTimer, 1000);
+//         }
+//     };
 
 function trueOrFalse(answerSelected) {
     if (answerSelected === "true") {
@@ -99,6 +100,14 @@ function populateHighScores() {
         homeButton.addEventListener("click", init);
     
 }
+
+// function saveScore(answerSelected) {
+//     if (answerSelected === "true") {
+//         i + 10;
+//     } else {
+//         i - 10;
+//     }
+// }
 
 var questions = [
     {
