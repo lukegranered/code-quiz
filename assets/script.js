@@ -50,16 +50,20 @@ function populateCueCard() {
     var focusQuestion = document.querySelector("#question");
     focusQuestion.innerText = questions[questionNumber].question;
 
-    var answerButtons = document.querySelectorAll(".js-btn-question");   
-
+    var answerButtons = document.querySelectorAll(".js-btn-question");
+    
+    
     for (i = 0; i < questions[questionNumber].answers.length; i++) {
         const answerOption = questions[questionNumber].answers[i];
         answerButtons[i].innerText = answerOption.answer;
         answerButtons[i].setAttribute("data-is-correct", answerOption.isCorrect);
+        if (questionNumber >= 4) {
+            saveYourScore();
+        }
     }
-
     questionNumber += 1;
-
+     
+    
 }
 
 let timer = 60;
@@ -108,6 +112,7 @@ function populateHighScores() {
     
 }
 
+
 function saveYourScore() {
     if (queCard.style.display === "flex") {
         queCard.style.display = "none"
@@ -119,9 +124,14 @@ function saveYourScore() {
     } else {
         saveGame = "none"
     }
-
+        
     var yourScore = document.querySelector("#your-score");
     yourScore.innerText = timer;
+    
+    var playerName = document.getElementById("player-name");
+    localStorage.setItem("player-name", playerName.value);
+
+    
 }
 
 var questions = [
