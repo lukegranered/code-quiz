@@ -10,8 +10,7 @@ function init() {
     var highScoreBtn = document.querySelector("#highscore-btn");
     startBtn.addEventListener("click", () => {
         populateCueCard(0);
-        onTimer();
-        console.log(onTimer);
+        setInterval(onTimer, 1000);
         if (homeCard.style.display === "flex") {
             homeCard.style.display = "none";
         } else {
@@ -63,23 +62,26 @@ function populateCueCard() {
 
 }
 
+let timer = 60;
+function onTimer() {
+    document.getElementById("my-counter").innerHTML = timer;
+    if (timer <= 0) {
+        clearInterval(onTimer);
+        saveYourScore();
+    } else {
+        timer--;
+        }
+    };
 
-// function onTimer() {
-//     i = 60;
-//     document.getElementById("my-counter").innerHTML = i;
-//     i--;
-//     if (i < 0) {
-//         alert('You lose!');
-//     } else {
-//         setTimeout(onTimer, 1000);
-//         }
-//     };
+
 
 function trueOrFalse(answerSelected) {
     if (answerSelected === "true") {
+        timer += 10;
         populateCueCard();
     } else {
         window.alert("Sorry, wrong answer!")
+        timer -= 10;
     }
 }
 
@@ -89,6 +91,11 @@ function populateHighScores() {
         homeCard.style.display = "none";
     } else {
         homeCard.style.display = "none";
+    }
+    if (queCard.style.display === "flex") {
+        queCard.style.display = "none"
+    } else {
+        queCard.style.display = "none"
     }
     if (highScores.style.display === "none") {
         highScores.style.display = "flex";
@@ -101,13 +108,21 @@ function populateHighScores() {
     
 }
 
-// function saveScore(answerSelected) {
-//     if (answerSelected === "true") {
-//         i + 10;
-//     } else {
-//         i - 10;
-//     }
-// }
+function saveYourScore() {
+    if (queCard.style.display === "flex") {
+        queCard.style.display = "none"
+    } else {
+        queCard.style.display = "none"
+    }
+    if (saveGame.style.display === "none") {
+        saveGame.style.display = "flex"
+    } else {
+        saveGame = "none"
+    }
+
+    var yourScore = document.querySelector("#your-score");
+    yourScore.innerText = timer;
+}
 
 var questions = [
     {
