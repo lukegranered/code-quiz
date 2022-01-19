@@ -47,19 +47,22 @@ function init() {
 };
 
 function populateCueCard() {
+    if (questionNumber >= 4) {
+        saveYourScore();
+    }
     var focusQuestion = document.querySelector("#question");
     focusQuestion.innerText = questions[questionNumber].question;
 
     var answerButtons = document.querySelectorAll(".js-btn-question");
     
+
     
     for (i = 0; i < questions[questionNumber].answers.length; i++) {
         const answerOption = questions[questionNumber].answers[i];
         answerButtons[i].innerText = answerOption.answer;
+        console.log(questionNumber);
         answerButtons[i].setAttribute("data-is-correct", answerOption.isCorrect);
-        if (questionNumber >= 4) {
-            saveYourScore();
-        }
+        
     }
     questionNumber += 1;
      
@@ -91,15 +94,11 @@ function trueOrFalse(answerSelected) {
 
 
 function populateHighScores() {
-    if (homeCard.style.display === "flex") {
-        homeCard.style.display = "none";
+    
+    if (saveGame.style.display === "flex") {
+        saveGame.style.display = "none"
     } else {
-        homeCard.style.display = "none";
-    }
-    if (queCard.style.display === "flex") {
-        queCard.style.display = "none"
-    } else {
-        queCard.style.display = "none"
+        saveGame.style.display = "none"
     }
     if (highScores.style.display === "none") {
         highScores.style.display = "flex";
@@ -107,7 +106,15 @@ function populateHighScores() {
         highScores.style.display = "none";
     }
 
-    var homeButton = document.getElementById("#home-btn");
+    // var playerScore = localStorage.getItem("timer");
+    // var playerName = localStorage.getItem("player-name");
+    // var playerHighScore = document.getElementById("player-highscore");
+
+    // function listScores() {
+        
+    // }
+
+    var homeButton = document.getElementById("home-btn");
         homeButton.addEventListener("click", init);
     
 }
@@ -124,14 +131,20 @@ function saveYourScore() {
     } else {
         saveGame = "none"
     }
-        
+    clearInterval(onTimer);
     var yourScore = document.querySelector("#your-score");
     yourScore.innerText = timer;
     
     var playerName = document.getElementById("player-name");
-    localStorage.setItem("player-name", playerName.value);
-
     
+    
+    
+    var saveButton = document.getElementById("save-btn");
+    saveButton.addEventListener("click", () => {
+        localStorage.setItem("timer", yourScore.value);
+        localStorage.setItem("player-name", playerName.value);
+        populateHighScores();
+    }) 
 }
 
 var questions = [
