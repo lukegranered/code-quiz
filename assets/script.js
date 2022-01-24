@@ -3,14 +3,16 @@ var queCard = document.querySelector("#que-card");
 var saveGame = document.querySelector("#save-game");
 var highScores = document.querySelector("#highscores");
 var answerButtons = document.querySelectorAll(".js-btn-question");
+var myCounter = document.querySelector("#my-counter");
 let questionNumber = 0;
-
+var timerInterval;
+var playerScores = JSON.parse(localStorage.getItem("playerScores"))||[];
 function init() {
     var startBtn = document.querySelector("#start-btn");
     var highScoreBtn = document.querySelector("#highscore-btn");
     startBtn.addEventListener("click", () => {
         populateCueCard(0);
-        setInterval(onTimer, 1000);
+        timerInterval = setInterval(onTimer, 1000);
         if (homeCard.style.display === "flex") {
             homeCard.style.display = "none";
         } else {
@@ -33,6 +35,12 @@ function init() {
     });
     highScoreBtn.addEventListener("click", populateHighScores);
 
+    // if (myCounter.style.display === "flex") {
+    //     myCounter.style.display = "none"
+    // } else {
+    //     myCounter.style.display = "none"
+    // }
+
     if (homeCard.style.display === "none") {
         homeCard.style.display = "flex";
     } else {
@@ -47,6 +55,7 @@ function init() {
 };
 
 function populateCueCard() {
+
     if (questionNumber >= 4) {
         saveYourScore();
     }
@@ -54,7 +63,6 @@ function populateCueCard() {
     focusQuestion.innerText = questions[questionNumber].question;
 
     var answerButtons = document.querySelectorAll(".js-btn-question");
-    
 
     
     for (i = 0; i < questions[questionNumber].answers.length; i++) {
@@ -73,7 +81,7 @@ let timer = 60;
 function onTimer() {
     document.getElementById("my-counter").innerHTML = timer;
     if (timer <= 0) {
-        clearInterval(onTimer);
+        clearInterval(timerInterval);
         saveYourScore();
     } else {
         timer--;
@@ -94,7 +102,7 @@ function trueOrFalse(answerSelected) {
 
 
 function populateHighScores() {
-    
+    clearInterval(timerInterval);
     if (saveGame.style.display === "flex") {
         saveGame.style.display = "none"
     } else {
@@ -105,14 +113,21 @@ function populateHighScores() {
     } else {
         highScores.style.display = "none";
     }
+    if (myCounter.style.display === "flex") {
+        myCounter.style.display = "none"
+    } else {
+        myCounter.style.display = "none"
+    }
 
-    // var playerScore = localStorage.getItem("timer");
-    // var playerName = localStorage.getItem("player-name");
-    // var playerHighScore = document.getElementById("player-highscore");
+    
+    var player = document.getElementById("player");
+    for (var i = 0; i < playerScores.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = playerScores[i].playerName + " : " + playerScores[i].score;
+        player.append(li);
+    }
+    
 
-    // function listScores() {
-        
-    // }
 
     var homeButton = document.getElementById("home-btn");
         homeButton.addEventListener("click", init);
@@ -126,14 +141,19 @@ function saveYourScore() {
     } else {
         queCard.style.display = "none"
     }
+    // if (myCounter.style.display === "flex") {
+    //     myCounter.style.display = "none"
+    // } else {
+    //     myCounter.style.display = "none"
+    // }
     if (saveGame.style.display === "none") {
         saveGame.style.display = "flex"
     } else {
         saveGame = "none"
     }
-    clearInterval(onTimer);
-    var yourScore = document.querySelector("#your-score");
-    yourScore.innerText = timer;
+    clearInterval(timerInterval);
+    // var yourScore = document.querySelector("#your-score");
+    // yourScore.innerText = timer;
     
     var playerName = document.getElementById("player-name");
     
@@ -141,8 +161,9 @@ function saveYourScore() {
     
     var saveButton = document.getElementById("save-btn");
     saveButton.addEventListener("click", () => {
-        localStorage.setItem("timer", yourScore.value);
-        localStorage.setItem("player-name", playerName.value);
+        playerScores.push({'playerName': playerName.value, 'score': timer});
+        localStorage.setItem('playerScores', JSON.stringify(playerScores));
+        console.log(localStorage);
         populateHighScores();
     }) 
 }
